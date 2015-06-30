@@ -1,0 +1,27 @@
+{
+  "name": "string-placehold",
+  "version": "0.1.0",
+  "description": "A string template module for named or numbered placeholded strings and their interpolation. Based on ES6 template strings.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "placeholder",
+    "template",
+    "string",
+    "interpolate",
+    "format",
+    "replace",
+    "prepared",
+    "values"
+  ],
+  "author": "Peeyush Kushwaha <peeyush.p97@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^3.10.0"
+  }
+}
