@@ -3,6 +3,7 @@
 A string template module for named or numbered placeholded strings and their interpolation. Based on ES6 template string syntax.
 
 ##Examples
+
 Include by : 
 ```JavaScript
 var placehold = require("string-placehold");
