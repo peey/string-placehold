@@ -1,7 +1,7 @@
 {
   "name": "string-placehold",
-  "version": "0.1.0",
-  "description": "A string template module for named or numbered placeholded strings and their interpolation. Based on ES6 template strings.",
+  "version": "0.1.1",
+  "description": "A string template module for named or numbered placeholded strings and their interpolation. Based on ES6 template string syntax.",
   "main": "index.js",
   "directories": {
     "test": "test"
