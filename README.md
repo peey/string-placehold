@@ -27,11 +27,11 @@ Numbered placeholders
 
 var template = placehold `Greetings ${0}, welcome to ${1}.`
 
-var result = template("interpolation", "example");
+var result = template("earthling", "mars");
 //result -> "Greetings earthling, welcome to mars."
 
 //You can also pass in an array, it works by associating the placeholder with the array element on the index
-var result = template(["lovely", "neat"]);
+var result = template(["earthling", "mars"]);
 //result -> "Greetings earthling, welcome to mars."
 
 ```
