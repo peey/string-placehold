@@ -16,16 +16,16 @@ var mapTokensToValues = function (tokens, map) {
   return values;
 };
 
-var fill = function (strings, tokens, args) {
-  var map = (_.isObject(args[0]) || _.isArray(args[0]))? args[0] : args;
-  var values = mapTokensToValues(tokens, map);
-  return stringValueJoin(strings, values);
+var interpolate = function (strings, tokens, values) {
+  var map = (_.isObject(values[0]) || _.isArray(values[0]))? values[0] : values;
+  var valuesInOrder = mapTokensToValues(tokens, map);
+  return stringValueJoin(strings, valuesInOrder);
 };
 
 var placeholderClosure = function (strings, tokens) {
   return function () {
     var args = Array.prototype.slice.call(arguments, 0);
-    return fill(strings, tokens, args);
+    return interpolate(strings, tokens, args);
   };
 }
 
