@@ -20,6 +20,8 @@
     "values"
   ],
   "author": "Peeyush Kushwaha <peeyush.p97@gmail.com>",
+  "repository": "git://github.com/peey/string-placehold.git",
+  "homepage": "https://github.com/peey/string-placehold",
   "license": "MIT",
   "dependencies": {
     "lodash": "^3.10.0"
