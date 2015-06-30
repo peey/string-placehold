@@ -5,13 +5,13 @@ A string template module for named or numbered placeholded strings and their int
 ## Examples
 
 Include by : 
-```JavaScript
+```js
 var placehold = require("string-placehold");
 ```
 
 Named placeholders
 
-```JavaScript
+```js
 var template = placehold `Greetings ${"name"}, welcome to ${"place"}.`
  
 var result = template({
@@ -23,7 +23,7 @@ var result = template({
 ```
 
 Numbered placeholders
-```JavaScript
+```js
 
 var template = placehold `Greetings ${0}, welcome to ${1}.`
 
