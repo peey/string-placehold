@@ -2,7 +2,7 @@
 
 A string template module for named or numbered placeholded strings and their interpolation. Based on ES6 template string syntax.
 
-##Examples
+## Examples
 
 Include by : 
 ```JavaScript
