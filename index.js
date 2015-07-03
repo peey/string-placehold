@@ -18,6 +18,11 @@ var mapTokensToValues = function (tokens, map) {
 
 var interpolate = function (strings, tokens, values) {
   var map = (_.isObject(values[0]) || _.isArray(values[0]))? values[0] : values;
+
+  if(_.keys(map).length < _.unique(tokens).length) {
+    throw new Error(`string-placehold: value-token mismatch. ${_.keys(map).length} values provided for ${_.unique(tokens).length} unique tokens`);;
+  }
+
   var valuesInOrder = mapTokensToValues(tokens, map);
   return stringValueJoin(strings, valuesInOrder);
 };

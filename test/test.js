@@ -9,24 +9,45 @@ describe("string-placeholder", function () {
       assert.equal(typeof template, "function");
     });
     
-    it("should interpolate for named paramenters", function () {
-      var interpolate = placehold `this is ${"adjective"}`;
-      assert.equal(interpolate({adjective: "nice"}), "this is nice");
+    it("should interpolate for named placeholders", function () {
+      var template = placehold `this is ${"adjective"}`;
+      assert.equal(template({adjective: "nice"}), "this is nice");
     });
     
-    it("should interpolate for numbered parameters", function () {
-      var interpolate = placehold `this is ${0} and ${1}`;
-      assert.equal(interpolate("nice", "cozy"), "this is nice and cozy");
+    it("should interpolate same template with different values in different interpolations", function () {
+      var template = placehold `this is ${0} and ${1}`;
+      assert.equal(template("nice", "cozy"), "this is nice and cozy");
+      assert.equal(template("nicer", "cozier"), "this is nicer and cozier");
     });
     
-    it("should interpolate for numbered parameters and accept an array of values", function () {
-      var interpolate = placehold `this is ${0} and ${1}`;
-      assert.equal(interpolate(["nice", "cozy"]), "this is nice and cozy");
+    it("should interpolate for numbered placeholders", function () {
+      var template = placehold `this is ${0} and ${1}`;
+      assert.equal(template("nice", "cozy"), "this is nice and cozy");
     });
     
-    it("should interpolate for duplicate parameters", function () {
-      var interpolate = placehold `this is ${0} and ${0}`;
-      assert.equal(interpolate(["nice", "cozy"]), "this is nice and nice");
+    it("should interpolate for numbered placeholders and accept an array of values", function () {
+      var template = placehold `this is ${0} and ${1}`;
+      assert.equal(template(["nice", "cozy"]), "this is nice and cozy");
     });
+    
+    it("should throw when provided values are less than provided unique tokens", function () {
+      var template = placehold `this is ${0} and ${1}`;
+      assert.throws(function () {
+        template("nice");
+      }, /string-placehold: value-token mismatch/);
+    });
+    
+    it("shouldn't throw when provided values are more than provided unique tokens", function () {
+      var template = placehold `this is ${0} and ${1}`;
+      assert.doesNotThrow(function () {
+        template("nice", "cozy", "fuzzy");
+      }, /string-placehold: value-token mismatch/);
+    });
+    
+    it("should interpolate for duplicate placeholders", function () {
+      var template = placehold `this is ${0} and ${0}`;
+      assert.equal(template(["nice", "cozy"]), "this is nice and nice");
+    });
+    
   });
 });
