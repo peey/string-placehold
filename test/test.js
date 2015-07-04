@@ -34,7 +34,7 @@ describe("string-placeholder", function () {
       var template = placehold `this is ${0} and ${1}`;
       assert.throws(function () {
         template("nice");
-      }, /string-placehold: value-token mismatch/);
+      }, /string-placehold: no values provided for/);
     });
     
     it("shouldn't throw when provided values are more than provided unique tokens", function () {
