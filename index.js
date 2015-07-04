@@ -27,7 +27,7 @@ Placeholded.prototype.interpolate = function (values) {
   
   var diff = _.difference(_.unique(this.tokens), _.keys(map));
   if(!_.isEmpty(diff)) {
-    throw new Error(`string-placehold: no values provided for ${diff.length} placeholders: offending tokens : ${diff.join(", ")} `);
+    throw new Error(`string-placehold: value-token mismatch. No values provided for ${diff.length} placeholders. offending tokens : ${diff.join(", ")}`);
   }
 
   var valuesInOrder = this.mapTokensToValues(map);
