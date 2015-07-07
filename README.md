@@ -1,6 +1,6 @@
 # string-placehold
 
-A string template module for named or numbered placeholded strings and their interpolation. Based on ES6 template string syntax.
+A string template module for named or numbered placeholded strings and their interpolation, currying and more! (Based on ES6 template strings)
 
 ## Examples
 
