@@ -41,7 +41,7 @@ var result = template(["earthling", "mars"]);
 
 ## Compatibility
 
-Please note that this package is based on and requires support for ES6 template strings. Please ensure that your version of nodejs or iojs supports ES6 Template Strings. This package has been tested and works on iojs v2.3.1.
+Please note that this package is based on and requires support for `ES6 template strings`. Please ensure that your version of nodejs or iojs supports ES6 Template Strings. This package has been tested and works on `iojs v2.3.1`.
 
 ## Licence
 
