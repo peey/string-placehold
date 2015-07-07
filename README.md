@@ -53,19 +53,6 @@ curried("earthling")("mars");
 //result -> "Greetings earthlings, welcome to mars.";
 ```
 
-Note that using the above example, 
-```js
-var template = placehold `Greetings ${0}, welcome to ${1}.`;
-
-var curried = template.curry();
-var newTemplate = curried("earthling");
-```
-is equivalent to
-
-```js
-var newTemplate = placehold `Greetings earthling, welcome to ${0}.`;
-```
-
 You may also
 
 ```js
@@ -84,6 +71,21 @@ var template = placehold `Greetings ${0}, welcome to ${1}.`;
 var curried = template.curry();
 var result = curried({1: "mars"})({0: "earthling"});
 ```
+
+Note how, 
+```js
+var template = placehold `Greetings ${"name"}, welcome to ${"place"}.`;
+
+var curried = template.curry();
+var newTemplate = curried({name: "earthling"});
+```
+is equivalent to
+
+```js
+var newTemplate = placehold `Greetings earthling, welcome to ${"place"}.`;
+```
+which demonstrates how currying may be useful to your templates.
+
 ## Installation
 
 `npm install string-placehold`
