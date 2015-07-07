@@ -50,4 +50,49 @@ describe("string-placeholder", function () {
     });
     
   });
+  
+  describe("curry", function () {
+    
+    it("should be a function", function () {
+      var template = placehold `hi`;
+      var curry = template.curry();
+      assert.equal(typeof curry, "function");
+    });
+    
+    it("should return a function while values are still incompletely provided", function () {
+      var template = placehold `this is ${0} and ${1}`;
+      var curry = template.curry()({0: "nice"});
+      
+      assert.equal(typeof curry, "function");
+    });
+    
+    it("should interpolate when all tokens have been provided for", function () {
+      var template = placehold `this is ${0} and ${1}`;
+      var result = template.curry()({0: "nice"})({1: "cozy"});
+      
+      assert.equal(result, "this is nice and cozy");
+    });
+    
+    it("should interpolate with named tokens", function () {
+      var template = placehold `this is ${"adjective"} and ${"otherAdjective"}`;
+      var result = template.curry()({adjective: "nice"})({otherAdjective: "cozy"});
+      
+      assert.equal(result, "this is nice and cozy");
+    });
+    
+    it("should accept values in any order", function () {
+      var template = placehold `this is ${0} and ${1}`;
+      var result = template.curry()({1: "cozy"})({0: "nice"});
+      
+      assert.equal(result, "this is nice and cozy");
+    });
+    
+    it("should accept sequential input", function () {
+      var template = placehold `this is ${0} and ${1}`;
+      var result = template.curry()("nice")("cozy");
+      
+      assert.equal(result, "this is nice and cozy");
+    });
+    
+  });
 });
