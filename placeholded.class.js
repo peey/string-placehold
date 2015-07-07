@@ -1,11 +1,5 @@
 var _ = require("lodash");
 
-var arrayToObject = function (arr) {
-  return _.transform(arr, function (result, value, key) {
-      result[key] = value;
-    }, {});
-};
-
 //what you would call a 'template'
 var Placeholded = function (strings, tokens, curried) {
   this.strings = strings;
@@ -40,13 +34,13 @@ Placeholded.prototype.parseInterpolateArguments = function () {
   
   if(_.isArray(args[0])) {
     //from array
-    return arrayToObject(args[0]);
+    return _.extend({}, args[0]);
   } else if(_.isObject(args[0])) {
-    //already may object
+    //already may be object
     return args[0];
   } else {
     //from list of arguments
-    return arrayToObject(args);
+    return _.extend({}, args);
   }
 };
 
