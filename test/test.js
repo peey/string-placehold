@@ -73,6 +73,16 @@ describe("string-placeholder", function () {
       assert.equal(result, "this is nice and cozy");
     });
     
+    it("should be immutable and hence reusable", function () {
+      var template = placehold `this is ${0} and ${1} and ${2}`;
+      var nice = template.curry()({0: "nice"});
+      var good = nice({2: "good"});
+      var bad = nice({2: "bad"});
+      
+      assert.equal(good({1: "cozy"}), "this is nice and cozy and good");
+      assert.equal(bad({1: "cozy"}), "this is nice and cozy and bad");
+    });
+    
     it("should interpolate with named tokens", function () {
       var template = placehold `this is ${"adjective"} and ${"otherAdjective"}`;
       var result = template.curry()({adjective: "nice"})({otherAdjective: "cozy"});

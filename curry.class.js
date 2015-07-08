@@ -1,9 +1,9 @@
 var _ = require("lodash");
 
-var Curry = function (placeholded) {
+var Curry = function (placeholded, map, counter) {
   this.placeholded = placeholded;
-  this.aggregateMap = {};
-  this.sequentialArgCounter = 0;
+  this.map = map || {};
+  this.sequentialArgCounter = counter || 0;
 };
 
 Curry.prototype.parseInterpolateArguments = function () {
@@ -25,13 +25,13 @@ Curry.prototype.parseInterpolateArguments = function () {
 Curry.prototype.interpolate = function () {
   var providedMap = this.parseInterpolateArguments.apply(this, arguments);
   
-   _.extend(this.aggregateMap, providedMap);
-  var unprovidedTokens = this.placeholded.unprovidedTokens(this.aggregateMap);
+  var newMap = _.extend({}, this.map, providedMap);
+  var unprovidedTokens = this.placeholded.unprovidedTokens(newMap);
   
   if(unprovidedTokens) {
-    return this.interpolateClosure();
+    return (new Curry(this.placeholded, newMap, this.sequentialArgCounter)).interpolateClosure();
   } else {
-    return this.placeholded.interpolate(this.aggregateMap);
+    return this.placeholded.interpolate(newMap);
   }
 };
 

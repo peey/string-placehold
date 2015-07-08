@@ -49,8 +49,14 @@ Currying allows you to pass in the values for tokens partially, a function is re
 var template = placehold `Greetings ${0}, welcome to ${1}.`;
 
 var curried = template.curry();
-curried("earthling")("mars");
-//result -> "Greetings earthlings, welcome to mars.";
+
+var welcomeAnEarthling = curried("earthling");
+
+welcomeAnEarthling("mars")
+//-> "Greetings earthlings, welcome to mars.";
+
+welcomeAnEarthling("titan")
+//-> "Greetings earthlings, welcome to mars.";
 ```
 
 You may also
@@ -71,20 +77,6 @@ var template = placehold `Greetings ${0}, welcome to ${1}.`;
 var curried = template.curry();
 var result = curried({1: "mars"})({0: "earthling"});
 ```
-
-Note how, 
-```js
-var template = placehold `Greetings ${"name"}, welcome to ${"place"}.`;
-
-var curried = template.curry();
-var newTemplate = curried({name: "earthling"});
-```
-is equivalent to
-
-```js
-var newTemplate = placehold `Greetings earthling, welcome to ${"place"}.`;
-```
-which demonstrates how currying may be useful to your templates.
 
 ## Installation
 
