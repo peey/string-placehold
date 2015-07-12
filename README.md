@@ -56,7 +56,7 @@ welcomeAnEarthling("mars")
 //-> "Greetings earthlings, welcome to mars.";
 
 welcomeAnEarthling("titan")
-//-> "Greetings earthlings, welcome to mars.";
+//-> "Greetings earthlings, welcome to titan.";
 ```
 
 You may also
